@@ -30,7 +30,6 @@ public class Timer {
         List<InstagramData> list = null;
         for(String tag: properties.getTags())
         {
-            System.out.println(tag);
             List<InstagramData> tmp = getItems(tag, properties.getClientId(), properties.getNumImages());
 
             if(list == null)

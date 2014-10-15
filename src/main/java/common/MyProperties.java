@@ -27,9 +27,6 @@ public class MyProperties
             setClientSecret(properties.getProperty("clientSecret"));
             setNumImages(properties.getProperty("imageCount", "1000"));
 
-
-            System.out.println(properties.getProperty("tags"));
-
             StringTokenizer tokenizer = new StringTokenizer(properties.getProperty("tags"), ",");
             List<String> list = new ArrayList<>();
 

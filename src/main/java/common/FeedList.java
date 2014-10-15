@@ -16,8 +16,6 @@ public class FeedList
     {
         for (CommonItem item : collection)
         {
-            System.out.println(feedList.contains(item));
-
             if(!feedList.contains(item)) {
                 feedList.add(item);
             }
