@@ -14,6 +14,7 @@ public class MyProperties
 
     private String clientId, clientSecret;
     private List<String> tags = new ArrayList<>();
+    private String numImages;
 
     public MyProperties()
     {
@@ -26,6 +27,7 @@ public class MyProperties
 
             setClientId(properties.getProperty("clientId"));
             setClientSecret(properties.getProperty("clientSecret"));
+            setNumImages(properties.getProperty("imageCount", "1000"));
 
 
             System.out.println(properties.getProperty("tags"));
@@ -80,5 +82,15 @@ public class MyProperties
     {
         if(me == null) me = new MyProperties();
         return me;
+    }
+
+    public void setNumImages(String numImages)
+    {
+        this.numImages = numImages;
+    }
+
+    public String getNumImages()
+    {
+        return numImages;
     }
 }

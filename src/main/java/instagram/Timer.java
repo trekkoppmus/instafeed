@@ -6,6 +6,7 @@ import common.MyProperties;
 import model.common.CommonItem;
 import model.instagram.InstagramData;
 import model.instagram.InstagramJSON;
+import model.instagram.InstagramMediaType;
 
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
@@ -33,7 +34,7 @@ public class Timer {
         for(String tag: properties.getTags())
         {
             System.out.println(tag);
-            List<InstagramData> tmp = getItems(tag, properties.getClientId());
+            List<InstagramData> tmp = getItems(tag, properties.getClientId(), properties.getNumImages());
 
             if(list == null)
             {
@@ -48,14 +49,17 @@ public class Timer {
         ObjectMapper mapper = new ObjectMapper();
         Collection<CommonItem> collection = new ArrayList<>();
         for(InstagramData data: list) {
-            CommonItem item = mapper.convertValue(data, CommonItem.class);
-            collection.add(item);
+            if(data.getType() == InstagramMediaType.image)
+            {
+                CommonItem item = mapper.convertValue(data, CommonItem.class);
+                collection.add(item);
+            }
         }
 
         feedList.addItems(collection);
     }
 
-    private List<InstagramData> getItems(String tag, String client_id)
+    private List<InstagramData> getItems(String tag, String client_id, String numImages)
     {
         if(tag == null || client_id == null) {
             return null;
@@ -63,8 +67,8 @@ public class Timer {
 
         try
         {
-            URL url = new URL(String.format("https://api.instagram.com/v1/tags/%s/media/recent?client_id=%s",
-                    tag, client_id));
+            URL url = new URL(String.format("https://api.instagram.com/v1/tags/%s/media/recent?client_id=%s&count=%s",
+                    tag, client_id, numImages));
             ObjectMapper mapper = new ObjectMapper();
             InstagramJSON root = mapper.readValue(url, InstagramJSON.class);
 

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
-@JsonIgnoreProperties({"users_in_photo", "comments", "likes", "attribution"})
+@JsonIgnoreProperties({"users_in_photo", "comments", "likes", "attribution", "videos"})
 public class InstagramData implements Comparable<InstagramData>
 {
     @JsonProperty
