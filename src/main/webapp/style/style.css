@@ -91,24 +91,30 @@ section > header > h1 {
 section > header > img {
     margin: 0.5em 1em;
     border-radius: 90%;
-/*    border: blue solid 1px; */
     height: 6em;
     min-width: 6em;
 }
 
 section > header > div.clock {
     font-family: sans-serif;
+    font-weight: normal;
     align-self: center;
     margin: 0 1em;
     font-size: 2em;
     color: #aaaaaa;
+    width: 3em;
+    text-align: right;
 }
 
 section > header > div.clock:before {
-    content: url(../img/feed_clock.png);
+    content: '';
+    background: url(../img/feed_clock.png) center no-repeat;
+    background-size: 0.8em;
     position: absolute;
     left: -1em;
-    top: -0.05em;
+    top: 0.05em;
+    width: 1em;
+    height: 1em;
 }
 
 section > img {

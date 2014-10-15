@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="instafeedApp">
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Instafeed</title>
+    <title>Instafeedsta</title>
     <link href="style/style.css" type="text/css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+    <script src="js/controller.js"></script>
 </head>
-<body>
+<body ng-controller="instafeedController">
     <header id="mainHeader">
         <span>
             <h1>Instafeedsta</h1>
@@ -13,13 +15,13 @@
         </span>
         <div id="refresh"></div>
     </header>
-    <section>
+    <section ng-repeat="item in items | orderBy : item.created_time">
         <header>
-            <img src="http://images.ak.instagram.com/profiles/profile_44479856_75sq_1370298287.jpg">
-            <h1>trekkoppmus</h1>
-            <div class="clock">3h</div>
+            <img ng-src="{{item.user.profile_picture}}">
+            <h1>{{item.user.username}}</h1>
+            <div class="clock">{{item.time}}</div>
         </header>
-        <img src="http://scontent-a.cdninstagram.com/hphotos-xaf1/t51.2885-15/10643803_355288034619922_1882222560_n.jpg">
+        <img ng-src="{{item.images.standard_resolution.url}}">
     </section>
 </body>
 </html>
