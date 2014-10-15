@@ -11,7 +11,6 @@ import model.instagram.InstagramMediaType;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
-import javax.inject.Inject;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,11 +20,9 @@ import java.util.List;
 @Singleton
 public class Timer {
 
-    @Inject
-    MyProperties properties;
+    MyProperties properties = MyProperties.getInstance();
 
-    @Inject
-    FeedList feedList;
+    FeedList feedList = FeedList.getInstance();
 
     @Schedule(hour = "*", minute = "*")
     void updateItems()
