@@ -17,7 +17,7 @@ public class CommonItem implements Comparable<CommonItem>
     private InstagramUser user;
     @JsonProperty
     private List<String> tags;
-
+    @JsonProperty("created_time")
     private Date createdTime;
     @JsonProperty
     private HashMap<String, InstagramImage> images;
@@ -51,7 +51,6 @@ public class CommonItem implements Comparable<CommonItem>
         return createdTime;
     }
 
-    @JsonProperty("created_time")
     public void setCreatedTime(Date creationTime)
     {
         this.createdTime = creationTime;
