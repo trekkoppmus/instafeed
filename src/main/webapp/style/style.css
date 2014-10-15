@@ -20,6 +20,7 @@
 }
 
 html,body {
+    margin-top: -0.4em;
     height: 100%;
 }
 
@@ -30,29 +31,33 @@ header {
 }
 
 header#mainHeader {
-    position: relative;
+    position:relative;
     background: #517fa4;
     margin: 0;
     padding: 0.2em 0em;
     font-size: 5em;
     height: 1em;
+    z-index: 3;
+}
+
+header#mainHeader > span {
+    padding: 0em 0.45em;
 }
 
 header#mainHeader > span > h1 {
     color: white;
     font-family: instagram,serif;
     font-size: 1em;
-    padding: 0 0.5em;
-    margin: 0 0.1em;
     max-width: 100%;
+    font-weight: normal;
 }
 
 header#mainHeader > span > h2 {
     color: #719fc4;
     font-size: 0.3em;
-    position: absolute;
-    top: 2.7em;
-    left: 8.5em;
+    position: relative;
+    top: -1.4em;
+    left: 6.5em;
 }
 
 header#mainHeader div#refresh {
@@ -68,6 +73,8 @@ header#mainHeader div#refresh {
 
 section > header {
     height: 7em;
+    background-color: rgba(255,255,255,0.8);
+    z-index: 2;
 }
 
 section > header > h1 {
@@ -76,6 +83,7 @@ section > header > h1 {
     margin: 0;
     font-size: 2em;
     width: 80%;
+    font-weight: normal;
 }
 
 section > header > img {
@@ -90,6 +98,7 @@ section > header > div.clock {
     align-self: center;
     margin: 0 1em;
     font-size: 2em;
+    color: #aaaaaa;
 }
 
 section > header > div.clock:before {
@@ -101,4 +110,6 @@ section > header > div.clock:before {
 
 section > img {
     width:100%;
+    height: 100%;
+    z-index: 1;
 }
