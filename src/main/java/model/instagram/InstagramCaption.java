@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 @JsonIgnoreProperties({"from"})
-public class InstagramCaption
+public class InstagramCaption implements Comparable<InstagramCaption>
 {
     @JsonProperty("created_time")
     private Date createdTime;
@@ -43,5 +43,18 @@ public class InstagramCaption
     public void setId(Long id)
     {
         this.id = id;
+    }
+
+    @Override
+    public int compareTo(InstagramCaption o)
+    {
+        return id.compareTo(o.id) + text.compareTo(o.text) + createdTime.compareTo(o.createdTime);
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof InstagramCaption)) return false;
+        return compareTo((InstagramCaption)o) == 0;
     }
 }

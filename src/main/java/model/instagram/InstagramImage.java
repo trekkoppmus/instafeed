@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URL;
 
-public class InstagramImage
+public class InstagramImage implements Comparable<InstagramImage>
 {
     @JsonProperty
     private int height;
@@ -42,5 +42,18 @@ public class InstagramImage
     public void setUrl(URL url)
     {
         this.url = url;
+    }
+
+    @Override
+    public int compareTo(InstagramImage o)
+    {
+        return url.toString().compareTo(o.getUrl().toString()) + (height - o.getHeight()) + (width - o.getWidth());
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof InstagramImage)) return false;
+        return compareTo((InstagramImage)o) == 0;
     }
 }

@@ -8,8 +8,8 @@ import javax.ws.rs.core.Response;
 public class RestEndpoint {
 
     @GET
-    public Response subscription ()
+    public Response getList ()
     {
-        return Response.ok("This is totally OK").build();
+        return Response.ok().build();
     }
 }

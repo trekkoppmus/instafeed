@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Set;
 
 @JsonIgnoreProperties({"users_in_photo", "comments", "likes", "attribution"})
-public class InstagramData
+public class InstagramData implements Comparable<InstagramData>
 {
     @JsonProperty
     private InstagramMediaType type;
@@ -133,8 +133,23 @@ public class InstagramData
     }
 
     @Override
-    public String toString()
+    public int compareTo(InstagramData o)
     {
-        return getCreatedTime().toString();
+        return type.compareTo(o.type)
+                + filter.compareTo(o.filter)
+                + caption.compareTo(o.getCaption())
+//                + link.toString().compareTo(o.getLink().toString())
+                + user.compareTo(o.getUser())
+                + getCreatedTime().compareTo(o.getCreatedTime())
+                + id.compareTo(o.getId());
+//                + location.compareTo(o.getLocation());
+
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof InstagramData)) return false;
+        return compareTo((InstagramData)o) == 0;
     }
 }

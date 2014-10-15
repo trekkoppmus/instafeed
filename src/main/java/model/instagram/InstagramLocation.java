@@ -2,7 +2,7 @@ package model.instagram;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class InstagramLocation
+public class InstagramLocation implements Comparable<InstagramLocation>
 {
     @JsonProperty
     private double latitude;
@@ -51,5 +51,18 @@ public class InstagramLocation
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    @Override
+    public int compareTo(InstagramLocation o)
+    {
+        return (int)(latitude - o.getLatitude()) + (int)(longitude - o.getLongitude()) + (int)(id - o.id) + name.compareTo(o.getName());
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (!(o instanceof InstagramLocation)) return false;
+        return compareTo((InstagramLocation)o) == 0;
     }
 }
