@@ -3,25 +3,31 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Instafeedsta</title>
-    <link href="style/style.css" type="text/css" rel="stylesheet" />
+    <link href="style/style.css" type="text/css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
     <script src="js/controller.js"></script>
 </head>
 <body ng-controller="instafeedController">
-    <header id="mainHeader">
+<header id="mainHeader">
         <span>
             <h1>Instafeedsta</h1>
             <h2>by javaBin</h2>
         </span>
-        <div id="refresh"></div>
-    </header>
-    <section ng-repeat="item in items | orderBy : item.created_time">
+
+    <div id="refresh"></div>
+</header>
+<section id="content">
+    <article ng-repeat="item in items">
         <header>
             <img ng-src="{{item.user.profile_picture}}">
+
             <h1>{{item.user.username}}</h1>
-            <div class="clock">{{item.time}}</div>
+
+            <div class="clock">{{calcTime(item.created_time)}}</div>
         </header>
         <img ng-src="{{item.images.standard_resolution.url}}">
-    </section>
+    </article>
+</section>
 </body>
 </html>

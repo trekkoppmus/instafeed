@@ -137,7 +137,7 @@ public class InstagramData implements Comparable<InstagramData>
     {
         return type.compareTo(o.type)
                 + filter.compareTo(o.filter)
-                + caption.compareTo(o.getCaption())
+//                + caption.compareTo(o.getCaption())
 //                + link.toString().compareTo(o.getLink().toString())
                 + user.compareTo(o.getUser())
                 + getCreatedTime().compareTo(o.getCreatedTime())
