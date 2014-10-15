@@ -1,13 +1,11 @@
 package common;
 
-import javax.ejb.Singleton;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
-@Singleton
 public class MyProperties
 {
     private static MyProperties me = null;
