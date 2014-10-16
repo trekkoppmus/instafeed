@@ -9,9 +9,12 @@ import model.instagram.InstagramJSON;
 import model.instagram.InstagramMediaType;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,6 +27,17 @@ public class Timer {
     MyProperties properties = MyProperties.getInstance();
 
     FeedList feedList = FeedList.getInstance();
+
+    @PreDestroy
+    void save() {
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.writeValue(new File(properties.get("saveFile")), feedList.getFeedList());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        }
+    }
 
     @PostConstruct
     @Schedule(hour = "*", minute = "*")

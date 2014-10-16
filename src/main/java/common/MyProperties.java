@@ -1,5 +1,6 @@
 package common;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class MyProperties
             setTags(list);
 
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println("Hmm: " + e.toString());
         }
     }
@@ -87,5 +88,15 @@ public class MyProperties
     public String getNumImages()
     {
         return numImages;
+    }
+
+    public String get(String property) throws IOException
+    {
+        Properties properties = new Properties();
+        InputStream inputStream = this.getClass().getResourceAsStream("/config.properties");
+
+        properties.load(inputStream);
+
+        return properties.getProperty(property);
     }
 }
