@@ -1,8 +1,8 @@
 var instafeedApp = angular.module('instafeedApp', []);
 
-instafeedApp.filter('sublist', function(){
-    return function(input, range, start){
-        return input.slice(start, start+range);
+instafeedApp.filter('sublist', function () {
+    return function (input, range, start) {
+        return input.slice(start, start + range);
     };
 });
 
@@ -48,12 +48,12 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
                 return b.created_time - a.created_time;
             });
 
-            for(var index in data) {
+            for (var index in data) {
                 $scope.tmpArray.push(data[index]);
             }
 
-            if($scope.items.length === 0) {
-                $scope.items = $scope.tmpArray.splice(0,2);
+            if ($scope.items.length === 0) {
+                $scope.items = $scope.tmpArray.splice(0, 2);
             }
 
             //console.log("Updated");
@@ -61,61 +61,69 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
         });
     };
 
-    $scope.animate = function() {
+    $scope.animate = function () {
         var firstChild = angular.element("#content > article").first();
         var height = firstChild.height();
 
         console.log("Interval!");
 
-        content.animate({scrollTop: height}, 1000, "easeOutCirc", complete:function() {
+        content.animate({scrollTop: height}, 1000, "easeOutCirc", complete
+        :
+        function () {
 
-        $scope.$apply(function() {
-            $scope.items.splice(0,1);
-
-            var item = $scope.tmpArray.splice(0,1)[0];;
-            $scope.items.push(item);
-            content.scrollTop(0);
-        });
-
-        if($scope.tmpArray.length <= 3 && canUpdate) {
-            $scope.getData();
-        }
-
-
-        setTimeout($scope.animate, 5*1000);
-        });
-    }
-
-    $scope.getData().success(function(data) {
-        content.scrollTop(0);
-        setTimeout($scope.animate, 5*1000);
-    }));
-
-/*
-    $scope.animate = function() {
-        content.scrollTop(content.scrollTop() +1);
-    }
-
-    var intervalId = setInterval($scope.animate, 10);
-
-    content.scroll(function() {
-        var firstChild = angular.element("#content > article").first();
-        var idx = content.scrollTop();
-
-        if((firstChild.height() + firstChild.offset().top) <= content.offset().top) {
-            // Over #content
-            $scope.$apply(function() {
-                var height = firstChild.height();
+            $scope.$apply(function () {
                 $scope.items.splice(0, 1);
-                content.scrollTop(content.scrollTop() - height);
+
+                var item = $scope.tmpArray.splice(0, 1)[0];
+                ;
+                $scope.items.push(item);
+                content.scrollTop(0);
             });
+
+            if ($scope.tmpArray.length <= 3 && canUpdate) {
+                $scope.getData();
+            }
+
+
+            setTimeout($scope.animate, 5 * 1000);
         }
 
-        if($scope.items.length <= 3 && canUpdate) {
-            console.log("items.length <= 3");
-            $scope.getData();
-        }
-    });
+        )
+        ;
+    }
 
-*/
+    $scope.getData().success(function (data) {
+        content.scrollTop(0);
+        setTimeout($scope.animate, 5 * 1000);
+    })
+    )
+    ;
+
+    /*
+     $scope.animate = function() {
+     content.scrollTop(content.scrollTop() +1);
+     }
+
+     var intervalId = setInterval($scope.animate, 10);
+
+     content.scroll(function() {
+     var firstChild = angular.element("#content > article").first();
+     var idx = content.scrollTop();
+
+     if((firstChild.height() + firstChild.offset().top) <= content.offset().top) {
+     // Over #content
+     $scope.$apply(function() {
+     var height = firstChild.height();
+     $scope.items.splice(0, 1);
+     content.scrollTop(content.scrollTop() - height);
+     });
+     }
+
+     if($scope.items.length <= 3 && canUpdate) {
+     console.log("items.length <= 3");
+     $scope.getData();
+     }
+     });
+
+     */
 });

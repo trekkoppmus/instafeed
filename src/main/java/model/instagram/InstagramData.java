@@ -150,6 +150,6 @@ public class InstagramData implements Comparable<InstagramData>
     public boolean equals(Object o)
     {
         if (!(o instanceof InstagramData)) return false;
-        return compareTo((InstagramData)o) == 0;
+        return compareTo((InstagramData) o) == 0;
     }
 }

@@ -77,14 +77,17 @@ public class InstagramUser implements Comparable<InstagramUser>
     public int compareTo(InstagramUser o)
     {
         int webVal = 0;
-        if(website == null && o.getWebsite() == null)
+        if (website == null && o.getWebsite() == null)
         {
             webVal = 0;
-        } else if(website == null) {
+        } else if (website == null)
+        {
             webVal = 1;
-        } else if(o.getWebsite() == null) {
+        } else if (o.getWebsite() == null)
+        {
             webVal = -1;
-        } else {
+        } else
+        {
             webVal = website.toString().compareTo(o.getWebsite().toString());
         }
 
@@ -92,13 +95,13 @@ public class InstagramUser implements Comparable<InstagramUser>
                 + fullName.compareTo(o.getFullName())
                 + profilePicture.toString().compareTo(o.getProfilePicture().toString())
                 + webVal
-                + (int)(id - o.getId());
+                + (int) (id - o.getId());
     }
 
     @Override
     public boolean equals(Object o)
     {
         if (!(o instanceof InstagramUser)) return false;
-        return compareTo((InstagramUser)o) == 0;
+        return compareTo((InstagramUser) o) == 0;
     }
 }

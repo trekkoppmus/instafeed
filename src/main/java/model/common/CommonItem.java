@@ -86,6 +86,6 @@ public class CommonItem implements Comparable<CommonItem>
     public boolean equals(Object o)
     {
         if (!(o instanceof CommonItem)) return false;
-        return this.compareTo((CommonItem)o) == 0;
+        return this.compareTo((CommonItem) o) == 0;
     }
 }

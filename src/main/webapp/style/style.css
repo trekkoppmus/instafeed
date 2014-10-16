@@ -14,12 +14,12 @@
 }
 
 * {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
     position: relative;
 }
 
-html,body {
+html, body {
     height: 100%;
 }
 
@@ -34,7 +34,7 @@ header {
 }
 
 header#mainHeader {
-    position:relative;
+    position: relative;
     background: #517fa4;
     margin: 0;
     padding: 0.2em 0em;
@@ -50,7 +50,7 @@ header#mainHeader > span {
 
 header#mainHeader > span > h1 {
     color: white;
-    font-family: instagram,serif;
+    font-family: instagram, serif;
     font-size: 1em;
     max-width: 100%;
     font-weight: normal;
@@ -87,12 +87,12 @@ article > header {
     top: 0;
     height: 7em;
     margin-top: 1.6em;
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     z-index: 2;
 }
 
 article > header > h1 {
-    font-family: instagramName,sans-serif;
+    font-family: instagramName, sans-serif;
     align-self: center;
     margin: 0;
     font-size: 2em;
@@ -124,7 +124,7 @@ article > header > div.clock:before {
     background: url(../img/feed_clock.png) center no-repeat;
     background-size: 0.8em;
     position: absolute;
-/*    left: -1.3em; */
+    /*    left: -1.3em; */
     left: 0em;
     top: 0.1em;
     width: 1em;
@@ -132,7 +132,7 @@ article > header > div.clock:before {
 }
 
 article > img {
-    width:100%;
+    width: 100%;
     z-index: 1;
 }
 

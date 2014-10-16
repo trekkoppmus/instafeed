@@ -39,9 +39,16 @@ public class MyProperties
             setTags(list);
 
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             System.err.println("Hmm: " + e.toString());
         }
+    }
+
+    public static MyProperties getInstance()
+    {
+        if (me == null) me = new MyProperties();
+        return me;
     }
 
     public String getClientId()
@@ -74,20 +81,14 @@ public class MyProperties
         this.tags = tags;
     }
 
-    public static MyProperties getInstance()
+    public String getNumImages()
     {
-        if(me == null) me = new MyProperties();
-        return me;
+        return numImages;
     }
 
     public void setNumImages(String numImages)
     {
         this.numImages = numImages;
-    }
-
-    public String getNumImages()
-    {
-        return numImages;
     }
 
     public String get(String property) throws IOException

@@ -56,13 +56,13 @@ public class InstagramLocation implements Comparable<InstagramLocation>
     @Override
     public int compareTo(InstagramLocation o)
     {
-        return (int)(latitude - o.getLatitude()) + (int)(longitude - o.getLongitude()) + (int)(id - o.id) + name.compareTo(o.getName());
+        return (int) (latitude - o.getLatitude()) + (int) (longitude - o.getLongitude()) + (int) (id - o.id) + name.compareTo(o.getName());
     }
 
     @Override
     public boolean equals(Object o)
     {
         if (!(o instanceof InstagramLocation)) return false;
-        return compareTo((InstagramLocation)o) == 0;
+        return compareTo((InstagramLocation) o) == 0;
     }
 }

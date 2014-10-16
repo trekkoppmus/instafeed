@@ -12,23 +12,25 @@ public class FeedList
     private static FeedList me;
     private List<CommonItem> feedList = new LinkedList<>();
 
+    public static FeedList getInstance()
+    {
+        if (me == null) me = new FeedList();
+        return me;
+    }
+
     public void addItems(Collection<CommonItem> collection)
     {
         for (CommonItem item : collection)
         {
-            if(!feedList.contains(item)) {
+            if (!feedList.contains(item))
+            {
                 feedList.add(item);
             }
         }
     }
 
-    public List<CommonItem> getFeedList() {
-        return feedList;
-    }
-
-    public static FeedList getInstance()
+    public List<CommonItem> getFeedList()
     {
-        if(me == null) me = new FeedList();
-        return me;
+        return feedList;
     }
 }

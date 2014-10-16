@@ -22,20 +22,23 @@ import java.util.List;
 
 @Startup
 @Singleton
-public class Timer {
+public class Timer
+{
 
     MyProperties properties = MyProperties.getInstance();
 
     FeedList feedList = FeedList.getInstance();
 
     @PreDestroy
-    void save() {
+    void save()
+    {
         try
         {
             ObjectMapper mapper = new ObjectMapper();
             String fileName = properties.get("filename");
             mapper.writeValue(new File(fileName), feedList.getFeedList());
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             System.err.println(e.toString());
         }
     }
@@ -45,24 +48,25 @@ public class Timer {
     void updateItems()
     {
         List<InstagramData> list = null;
-        for(String tag: properties.getTags())
+        for (String tag : properties.getTags())
         {
             List<InstagramData> tmp = getItems(tag, properties.getClientId(), properties.getNumImages());
 
-            if(list == null)
+            if (list == null)
             {
                 list = tmp;
             }
 
-            if(list == null || tmp == null) continue;
+            if (list == null || tmp == null) continue;
             list.retainAll(tmp);
         }
 
 
         ObjectMapper mapper = new ObjectMapper();
         Collection<CommonItem> collection = new ArrayList<>();
-        for(InstagramData data: list) {
-            if(data.getType() == InstagramMediaType.image)
+        for (InstagramData data : list)
+        {
+            if (data.getType() == InstagramMediaType.image)
             {
                 CommonItem item = mapper.convertValue(data, CommonItem.class);
                 collection.add(item);
@@ -75,7 +79,8 @@ public class Timer {
 
     private List<InstagramData> getItems(String tag, String client_id, String numImages)
     {
-        if(tag == null || client_id == null) {
+        if (tag == null || client_id == null)
+        {
             return null;
         }
 

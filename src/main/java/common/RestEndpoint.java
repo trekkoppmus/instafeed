@@ -12,7 +12,8 @@ public class RestEndpoint
 
     @GET
     @Produces("application/json")
-    public Response get() {
+    public Response get()
+    {
         return Response.ok(feedList.getFeedList()).build();
     }
 }

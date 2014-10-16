@@ -54,6 +54,6 @@ public class InstagramImage implements Comparable<InstagramImage>
     public boolean equals(Object o)
     {
         if (!(o instanceof InstagramImage)) return false;
-        return compareTo((InstagramImage)o) == 0;
+        return compareTo((InstagramImage) o) == 0;
     }
 }
