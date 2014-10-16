@@ -13,47 +13,82 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
         date = new Date(date);
 
         var millisec = now - date;
-        var sec = parseInt(millisec / 1000);
-        var min = parseInt(sec / 60);
-        var hours = parseInt(min / 60);
-        var days = parseInt(hours / 24);
-        var weeks = parseInt(days / 7);
-        var years = parseInt(weeks / 52);
+        var sec = parseInt(Math.floor(millisec / 1000));
+        var min = parseInt(Math.floor(sec / 60));
+        var hours = parseInt(Math.floor(min / 60));
+        var days = parseInt(Math.floor(hours / 24));
+        var weeks = parseInt(Math.floor(days / 7));
+        var years = parseInt(Math.floor(weeks / 52));
 
         if (years > 0) {
-            return years + "y";
+            return years + " y";
         } else if (weeks > 0) {
-            return weeks + "w";
+            return weeks + " w";
         } else if (days > 0) {
-            return days + "d";
+            return days + " d";
         } else if (hours > 0) {
-            return hours + "h";
+            return hours + " h";
         } else if (min > 0) {
-            return min + "m"
+            return min + " m"
         } else {
-            return sec + "s";
+            return sec + " s";
         }
     }
 
     $scope.items = [];
+    $scope.tmpArray = [];
+
+    var canUpdate;
+    var content = angular.element("#content");
 
     $scope.getData = function () {
-        $http.get('rest/').success(function (data) {
+        canUpdate = false;
+        return $http.get('rest/').success(function (data) {
             data.sort(function (a, b) {
                 return b.created_time - a.created_time;
             });
 
             for(var index in data) {
-                $scope.items.push(data[index]);
+                $scope.tmpArray.push(data[index]);
             }
 
+            if($scope.items.length === 0) {
+                $scope.items = $scope.tmpArray.splice(0,2);
+            }
+
+            //console.log("Updated");
+            canUpdate = true;
         });
     };
 
-    $scope.getData();
+    $scope.animate = function() {
+        var firstChild = angular.element("#content > article").first();
+        var height = firstChild.height();
 
-    var content = angular.element("#content");
+        console.log("Interval!");
 
+        $scope.$apply(function() {
+            $scope.items.splice(0,1);
+
+            var item = $scope.tmpArray.splice(0,1)[0];;
+            $scope.items.push(item);
+            content.scrollTop(0);
+        });
+
+        if($scope.tmpArray.length <= 3 && canUpdate) {
+            $scope.getData();
+        }
+
+        content.animate({scrollTop: height}, 1000, "easeOutCirc");
+        setTimeout($scope.animate, 5*1000);
+    }
+
+    $scope.getData().success(function(data) {
+        content.scrollTop(0);
+        setTimeout($scope.animate, 5*1000);
+    });
+
+/*
     $scope.animate = function() {
         content.scrollTop(content.scrollTop() +1);
     }
@@ -64,17 +99,20 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
         var firstChild = angular.element("#content > article").first();
         var idx = content.scrollTop();
 
-        if(firstChild.height() + firstChild.offset().top < 0) {
+        if((firstChild.height() + firstChild.offset().top) <= content.offset().top) {
+            // Over #content
             $scope.$apply(function() {
-                clearInterval(intervalId);
+                var height = firstChild.height();
                 $scope.items.splice(0, 1);
-                content.scrollTop(idx - firstChild.height());
-                intervalId = setInterval($scope.animate, 10);
+                content.scrollTop(content.scrollTop() - height);
             });
         }
 
-        if($scope.items.length <= 3) {
+        if($scope.items.length <= 3 && canUpdate) {
+            console.log("items.length <= 3");
             $scope.getData();
         }
     });
+
+*/
 });
