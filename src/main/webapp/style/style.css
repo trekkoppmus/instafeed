@@ -104,7 +104,7 @@ article > header > img {
     margin: 1em;
     border-radius: 90%;
     height: 5em;
-    min-width: 5em;
+    width: 5em;
 }
 
 article > header > div.clock {
@@ -116,7 +116,6 @@ article > header > div.clock {
     font-size: 1.7em;
     color: #aaaaaa;
     width: 4em;
-/*     width: 3em; */
     text-align: right;
 }
 

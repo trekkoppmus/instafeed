@@ -67,6 +67,8 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
         console.log("Interval!");
 
+        content.animate({scrollTop: height}, 1000, "easeOutCirc", complete:function() {
+
         $scope.$apply(function() {
             $scope.items.splice(0,1);
 
@@ -79,14 +81,15 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
             $scope.getData();
         }
 
-        content.animate({scrollTop: height}, 1000, "easeOutCirc");
+
         setTimeout($scope.animate, 5*1000);
+        });
     }
 
     $scope.getData().success(function(data) {
         content.scrollTop(0);
         setTimeout($scope.animate, 5*1000);
-    });
+    }));
 
 /*
     $scope.animate = function() {
