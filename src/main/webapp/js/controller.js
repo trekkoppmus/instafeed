@@ -52,26 +52,28 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
     $scope.getData();
 
+    var content = angular.element("#content");
+
     $scope.animate = function() {
-        angular.element("#content").scrollTop(angular.element("#content").scrollTop() +1);
+        content.scrollTop(content.scrollTop() +1);
     }
 
     var intervalId = setInterval($scope.animate, 10);
 
-    angular.element("#content").scroll(function() {
+    content.scroll(function() {
         var firstChild = angular.element("#content > article").first();
-        var idx = angular.element("#content").scrollTop();
+        var idx = content.scrollTop();
 
         if(firstChild.height() + firstChild.offset().top < 0) {
             $scope.$apply(function() {
                 clearInterval(intervalId);
                 $scope.items.splice(0, 1);
-                angular.element("#content").scrollTop(idx - firstChild.height());
+                content.scrollTop(idx - firstChild.height());
                 intervalId = setInterval($scope.animate, 10);
             });
         }
 
-        if($scope.items.length === 3) {
+        if($scope.items.length <= 3) {
             $scope.getData();
         }
     });

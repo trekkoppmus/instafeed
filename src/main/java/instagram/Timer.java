@@ -8,6 +8,7 @@ import model.instagram.InstagramData;
 import model.instagram.InstagramJSON;
 import model.instagram.InstagramMediaType;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -24,6 +25,7 @@ public class Timer {
 
     FeedList feedList = FeedList.getInstance();
 
+    @PostConstruct
     @Schedule(hour = "*", minute = "*")
     void updateItems()
     {

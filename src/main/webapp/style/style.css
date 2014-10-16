@@ -102,10 +102,9 @@ article > header > div.clock {
     font-weight: normal;
     align-self: center;
     margin: 0 1em;
-    font-size: 2em;
+    font-size: 1.7em;
     color: #aaaaaa;
-    width: 3em;
-    text-align: right;
+/*    width: 3em; */
 }
 
 article > header > div.clock:before {
@@ -113,7 +112,7 @@ article > header > div.clock:before {
     background: url(../img/feed_clock.png) center no-repeat;
     background-size: 0.8em;
     position: absolute;
-    left: -1em;
+    left: -1.5em;
     top: 0.05em;
     width: 1em;
     height: 1em;
