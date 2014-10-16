@@ -3,3 +3,5 @@ web:
   ports:
     - "9090:8080"
     - "9091:8009"
+  volumes:
+    - ./output/:/output

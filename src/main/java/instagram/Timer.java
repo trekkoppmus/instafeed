@@ -33,7 +33,8 @@ public class Timer {
         try
         {
             ObjectMapper mapper = new ObjectMapper();
-            mapper.writeValue(new File(properties.get("saveFile")), feedList.getFeedList());
+            String fileName = properties.get("filename");
+            mapper.writeValue(new File(fileName), feedList.getFeedList());
         } catch (IOException e) {
             System.err.println(e.toString());
         }
@@ -69,6 +70,7 @@ public class Timer {
         }
 
         feedList.addItems(collection);
+//        save();
     }
 
     private List<InstagramData> getItems(String tag, String client_id, String numImages)
