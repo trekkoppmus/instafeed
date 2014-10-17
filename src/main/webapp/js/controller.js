@@ -67,27 +67,24 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
         console.log("Interval!");
 
-        content.animate({scrollTop: height}, 1000, "easeOutCirc", complete
-        :
-        function () {
+        content.animate({scrollTop: height}, 1000, "easeOutCirc", function () {
 
-            $scope.$apply(function () {
-                $scope.items.splice(0, 1);
+                $scope.$apply(function () {
+                    $scope.items.splice(0, 1);
 
-                var item = $scope.tmpArray.splice(0, 1)[0];
-                ;
-                $scope.items.push(item);
-                content.scrollTop(0);
-            });
+                    var item = $scope.tmpArray.splice(0, 1)[0];
+                    ;
+                    $scope.items.push(item);
+                    content.scrollTop(0);
+                });
 
-            if ($scope.tmpArray.length <= 3 && canUpdate) {
-                $scope.getData();
+                if ($scope.tmpArray.length <= 3 && canUpdate) {
+                    $scope.getData();
+                }
+
+
+                setTimeout($scope.animate, 5 * 1000);
             }
-
-
-            setTimeout($scope.animate, 5 * 1000);
-        }
-
         )
         ;
     }
