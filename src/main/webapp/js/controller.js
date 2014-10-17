@@ -33,7 +33,7 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
         } else {
             return sec + " s";
         }
-    }
+    };
 
     $scope.items = [];
     $scope.tmpArray = [];
@@ -73,7 +73,6 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
                     $scope.items.splice(0, 1);
 
                     var item = $scope.tmpArray.splice(0, 1)[0];
-                    ;
                     $scope.items.push(item);
                     content.scrollTop(0);
                 });
@@ -86,15 +85,12 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
                 setTimeout($scope.animate, 5 * 1000);
             }
         )
-        ;
-    }
+    };
 
     $scope.getData().success(function (data) {
         content.scrollTop(0);
         setTimeout($scope.animate, 5 * 1000);
-    })
-    )
-    ;
+    });
 
     /*
      $scope.animate = function() {
