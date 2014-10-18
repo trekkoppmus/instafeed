@@ -81,6 +81,11 @@ article {
     height: 100%;
 }
 
+img {
+    object-fit: contain;
+    object-position: center center;
+}
+
 article > header {
     position: relative;
     top: 0;
