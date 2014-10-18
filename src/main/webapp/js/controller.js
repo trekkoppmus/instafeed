@@ -67,7 +67,7 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
         console.log("Interval!");
 
-        content.animate({scrollTop: height + 5}, 1000, "easeOutExpo", function () {
+        content.animate({scrollTop: height + 1}, 1000, "easeOutExpo", function () {
 
                 $scope.$apply(function () {
                     $scope.items.splice(0, 1);
