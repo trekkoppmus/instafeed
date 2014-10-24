@@ -47,17 +47,16 @@ public class Timer
     @Schedule(hour = "*", minute = "*")
     void updateItems()
     {
-        List<InstagramData> list = null;
+        List<InstagramData> list = new ArrayList<>();
         for (String tag : properties.getTags())
         {
             List<InstagramData> tmp = getItems(tag, properties.getClientId(), properties.getNumImages());
 
-            if (list == null)
-            {
-                list = tmp;
-            }
-
             if (list == null || tmp == null) continue;
+
+            if(list.isEmpty()) {
+                list.addAll(tmp);
+            }
             list.retainAll(tmp);
         }
 
@@ -81,7 +80,7 @@ public class Timer
     {
         if (tag == null || client_id == null)
         {
-            return null;
+            return new ArrayList<>();
         }
 
         try
@@ -95,7 +94,7 @@ public class Timer
         } catch (Exception e)
         {
             System.err.println(e.toString());
-            return null;
+            return new ArrayList<>();
         }
     }
 }
