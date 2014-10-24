@@ -8,6 +8,8 @@ instafeedApp.filter('sublist', function () {
 
 instafeedApp.controller('instafeedController', function ($scope, $http, $interval) {
 
+    $scope.title = "Instabin";
+
     $scope.calcTime = function (date) {
         var now = new Date();
         date = new Date(date);
@@ -50,6 +52,10 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
             for (var index in data) {
                 $scope.tmpArray.push(data[index]);
+            }
+
+            if (($scope.tmpArray.length == 1) && (data.length == 1)) {
+                $scope.tmpArray.push(data[0]);
             }
 
             if ($scope.items.length === 0) {
