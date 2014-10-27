@@ -13,7 +13,7 @@ public class InstagramCaption implements Comparable<InstagramCaption>
     @JsonProperty
     private String text;
     @JsonProperty
-    private Long id;
+    private long id;
 
     public Date getCreatedTime()
     {
@@ -48,7 +48,7 @@ public class InstagramCaption implements Comparable<InstagramCaption>
     @Override
     public int compareTo(InstagramCaption o)
     {
-        return id.compareTo(o.id) + text.compareTo(o.text) + createdTime.compareTo(o.createdTime);
+        return Long.compare(id, o.getId()) + text.compareTo(o.text) + createdTime.compareTo(o.createdTime);
     }
 
     @Override

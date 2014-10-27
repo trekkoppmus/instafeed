@@ -142,7 +142,6 @@ public class InstagramData implements Comparable<InstagramData>
                 + user.compareTo(o.getUser())
                 + getCreatedTime().compareTo(o.getCreatedTime())
                 + id.compareTo(o.getId());
-//                + location.compareTo(o.getLocation());
 
     }
 
@@ -150,6 +149,7 @@ public class InstagramData implements Comparable<InstagramData>
     public boolean equals(Object o)
     {
         if (!(o instanceof InstagramData)) return false;
+
         return compareTo((InstagramData) o) == 0;
     }
 }

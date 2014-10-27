@@ -50,15 +50,20 @@ public class Timer
         List<InstagramData> list = new ArrayList<>();
         for (String tag : properties.getTags())
         {
+            System.out.println(tag);
             List<InstagramData> tmp = getItems(tag, properties.getClientId(), properties.getNumImages());
 
             if (list == null || tmp == null) continue;
 
-            if(list.isEmpty()) {
+            if(list.size() == 0) {
                 list.addAll(tmp);
+            } else
+            {
+                list.retainAll(tmp);
             }
-            list.retainAll(tmp);
         }
+
+        System.out.println(list);
 
 
         ObjectMapper mapper = new ObjectMapper();

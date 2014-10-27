@@ -95,7 +95,7 @@ public class InstagramUser implements Comparable<InstagramUser>
                 + fullName.compareTo(o.getFullName())
                 + profilePicture.toString().compareTo(o.getProfilePicture().toString())
                 + webVal
-                + (int) (id - o.getId());
+                + Long.compare(id, o.getId());
     }
 
     @Override

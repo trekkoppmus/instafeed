@@ -47,7 +47,7 @@ public class InstagramImage implements Comparable<InstagramImage>
     @Override
     public int compareTo(InstagramImage o)
     {
-        return url.toString().compareTo(o.getUrl().toString()) + (height - o.getHeight()) + (width - o.getWidth());
+        return url.toString().compareTo(o.getUrl().toString()) + Integer.compare(height, o.getHeight()) + Integer.compare(width, o.getWidth());
     }
 
     @Override
