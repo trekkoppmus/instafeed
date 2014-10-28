@@ -19,7 +19,7 @@
     <!--<div id="refresh"></div>-->
 </header>
 <section id="content">
-    <article ng-repeat="item in items" class="{{item.class}}">
+    <article ng-repeat="item in items" ng-class="{1: 'showMe', 2: 'done'}[item.class]">
         <header>
             <img ng-src="{{item.user.profile_picture}}">
 

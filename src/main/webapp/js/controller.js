@@ -52,12 +52,8 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
             });
 
             for (var index in data) {
-                data[index].class="";
+                data[index].class=0;
                 $scope.tmpArray.push(data[index]);
-            }
-
-            if (($scope.tmpArray.length == 1) && (data.length == 1)) {
-                $scope.tmpArray.push(data[0]);
             }
 
             //console.log("Updated");
@@ -74,9 +70,9 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
                 lastImage = 2;
             }
 
-            $scope.items[currentImage].class = "showMe";
+            $scope.items[currentImage].class = 1;
             $scope.items[nextImage] = $scope.tmpArray.splice(0, 1)[0];
-            $scope.items[lastImage].class = "done";
+            $scope.items[lastImage].class = 2;
 
             currentImage = nextImage;
         }
@@ -87,10 +83,8 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
     };
 
     $scope.getData().success(function (data) {
-        /*content.scrollTop(0); */
-
         for(var i in [0,1,2]) {
-            $scope.items.push($scope.tmpArray.slice(0,1)[0]);
+            $scope.items.push($scope.tmpArray.slice(i % ($scope.tmpArray.length),1)[0]);
         }
 
         $scope.items[currentImage].class = "showMe";
