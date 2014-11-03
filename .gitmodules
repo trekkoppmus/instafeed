@@ -1,0 +1,3 @@
+[submodule "lib/JavaSnap"]
+	path = lib/JavaSnap
+	url = git@github.com:hatboysam/JavaSnap.git

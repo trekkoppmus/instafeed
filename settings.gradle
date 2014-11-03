@@ -1,2 +1,3 @@
 rootProject.name = 'instafeed'
+include 'lib/JavaSnap'
 

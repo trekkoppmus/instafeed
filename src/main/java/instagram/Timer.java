@@ -44,6 +44,19 @@ public class Timer
     }
 
     @PostConstruct
+    void load() {
+        try
+        {
+            ObjectMapper mapper = new ObjectMapper();
+            String fileName = properties.get("filename");
+            feedList.addItems((Collection<CommonItem>)mapper.readValue(new File(fileName),
+                    mapper.getTypeFactory().constructCollectionType(List.class, CommonItem.class)));
+        } catch (IOException e)
+        {
+            System.err.println(e.toString());
+        }
+    }
+
     @Schedule(hour = "*", minute = "*")
     void updateItems()
     {
@@ -63,9 +76,6 @@ public class Timer
             }
         }
 
-        System.out.println(list);
-
-
         ObjectMapper mapper = new ObjectMapper();
         Collection<CommonItem> collection = new ArrayList<>();
         for (InstagramData data : list)
@@ -78,14 +88,14 @@ public class Timer
         }
 
         feedList.addItems(collection);
-//        save();
+        save();
     }
 
     private List<InstagramData> getItems(String tag, String client_id, String numImages)
     {
         if (tag == null || client_id == null)
         {
-            return new ArrayList<>();
+            return new ArrayList<InstagramData>();
         }
 
         try
