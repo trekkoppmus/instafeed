@@ -70,8 +70,12 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
                 lastImage = 2;
             }
 
+            $scope.items[currentImage] = $scope.items[currentImage] || {};
             $scope.items[currentImage].class = 1;
+
             $scope.items[nextImage] = $scope.tmpArray.splice(0, 1)[0];
+
+            $scope.items[lastImage] = $scope.items[lastImage] || {};
             $scope.items[lastImage].class = 2;
 
             currentImage = nextImage;
@@ -84,10 +88,12 @@ instafeedApp.controller('instafeedController', function ($scope, $http, $interva
 
     $scope.getData().success(function (data) {
         for(var i in [0,1,2]) {
-            $scope.items.push($scope.tmpArray.slice(i % ($scope.tmpArray.length),1)[0]);
+            $scope.items.push($scope.tmpArray.slice(i % ($scope.tmpArray.length),1));
         }
 
+        $scope.items[currentImage] = $scope.items[currentImage] || {};
         $scope.items[currentImage].class = "showMe";
+
         $interval($scope.animate, 5 * 1000);
     });
 });
