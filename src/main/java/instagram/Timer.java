@@ -1,6 +1,8 @@
 package instagram;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.habosa.javasnap.Snap;
+import com.habosa.javasnap.Snapchat;
 import common.FeedList;
 import common.MyProperties;
 import model.common.CommonItem;
@@ -14,6 +16,7 @@ import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -89,6 +92,40 @@ public class Timer
 
         feedList.addItems(collection);
         save();
+    }
+
+    //@Schedule(hour = "*", minute = "*")
+    private void getSnaps() {
+        try
+        {
+            String password = properties.get("snapPass");
+            String username = properties.get("snapUser");
+
+            Snapchat snapchat = Snapchat.login(username, password);
+            if (snapchat.refresh())
+            {
+                for (Snap snap : snapchat.getSnaps())
+                {
+                    if (!snap.isDownloadable()) continue;
+
+                    if (snap.isMedia() && snap.isImage())
+                    {
+                        byte[] snapBytes = snapchat.getSnap(snap);
+                        File snapFile = new File(String.format(
+                                "%s/%s.jpg",
+                                properties.get("snapPath"),
+                                "test"
+                        ));
+
+                        FileOutputStream snapOS = new FileOutputStream(snapFile);
+                        snapOS.write(snapBytes);
+                        snapOS.close();
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private List<InstagramData> getItems(String tag, String client_id, String numImages)
